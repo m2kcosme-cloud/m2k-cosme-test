@@ -6,7 +6,10 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Ingredients from "./pages/Ingredients";
+import IngredientDetail from "./pages/IngredientDetail";
+import Cosmetics from "./pages/Cosmetics";
+import Skinboosters from "./pages/Skinboosters";
+import Fillers from "./pages/Fillers";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -17,7 +20,10 @@ function Router() {
       <Switch>
         <Route path={"/"} component={Home} />
         <Route path={"/about"} component={About} />
-        <Route path={"/ingredients"} component={Ingredients} />
+        <Route path={"/ingredient/:id"} component={IngredientDetail} />
+        <Route path={"/cosmetics"} component={Cosmetics} />
+        <Route path={"/skinboosters"} component={Skinboosters} />
+        <Route path={"/fillers"} component={Fillers} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />
