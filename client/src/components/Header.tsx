@@ -102,11 +102,13 @@ export default function Header() {
                   onMouseLeave={() => setCosmeticsDropdownOpen(false)}
                 >
                   {cosmeticsBrands.map((brand) => (
-                    <Link key={brand.id} href={`/cosmetics?brand=${brand.name}`}>
-                      <a className="block px-6 py-4 text-sm font-medium text-foreground hover:bg-secondary transition-colors border-b border-border last:border-b-0">
-                        {brand.name}
-                      </a>
-                    </Link>
+                    <a
+                      key={brand.id}
+                      href={`/cosmetics?brand=${brand.name}`}
+                      className="block px-6 py-4 text-sm font-medium text-foreground hover:bg-secondary transition-colors border-b border-border last:border-b-0"
+                    >
+                      {brand.name}
+                    </a>
                   ))}
                 </div>
               )}
@@ -189,14 +191,30 @@ export default function Header() {
                 )}
               </div>
 
-              <Link href="/cosmetics">
-                <a
-                  className="text-base font-medium transition-colors text-white hover:text-primary"
-                  onClick={() => setMobileMenuOpen(false)}
+              {/* Mobile Cosmetics Dropdown */}
+              <div>
+                <button
+                  className="text-base font-medium flex items-center gap-2 transition-colors w-full text-white"
+                  onClick={() => setCosmeticsDropdownOpen(!cosmeticsDropdownOpen)}
                 >
                   Cosmetics
-                </a>
-              </Link>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${cosmeticsDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {cosmeticsDropdownOpen && (
+                  <div className="mt-4 ml-4 space-y-3">
+                    {cosmeticsBrands.map((brand) => (
+                      <a
+                        key={brand.id}
+                        href={`/cosmetics?brand=${brand.name}`}
+                        className="block text-sm font-medium text-muted-foreground hover:text-foreground"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {brand.name}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               <Link href="/skinboosters">
                 <a
