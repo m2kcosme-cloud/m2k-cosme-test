@@ -21,16 +21,16 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-6">
-            <Link href="/ingredient/exosome">
+            <a href="/ingredient/exosome" className="inline-block">
               <Button size="lg" className="text-base font-medium px-8 py-6">
                 Explore Ingredients
               </Button>
-            </Link>
-            <Link href="/about">
+            </a>
+            <a href="/about" className="inline-block">
               <Button size="lg" variant="outline" className="text-base font-medium px-8 py-6">
                 About Us
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -80,11 +80,11 @@ export default function Home() {
           <p className="text-xl text-muted-foreground mb-12">
             M2K Cosme stands for informed curation — where each product earns its place through science, not slogans.
           </p>
-          <Link href="/about">
+          <a href="/about" className="inline-block">
             <Button size="lg" variant="outline" className="text-base font-medium px-8 py-6">
               Learn More
             </Button>
-          </Link>
+          </a>
         </div>
       </section>
     </div>
