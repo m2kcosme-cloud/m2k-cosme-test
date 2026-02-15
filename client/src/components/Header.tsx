@@ -11,10 +11,21 @@ const ingredientsList = [
   { id: "botox", name: "Topical Botox", path: "/ingredient/botox" },
 ];
 
+const cosmeticsBrands = [
+  { id: "exosomore", name: "Exosomore" },
+  { id: "cellvane", name: "Cellvane" },
+  { id: "therapytoabel", name: "TheraphytoAbel" },
+  { id: "snowtox", name: "Snowtox" },
+  { id: "exotshot", name: "ExoTshot" },
+  { id: "cosgram", name: "Cosgram" },
+  { id: "sensimium", name: "Sensimium (Haircare)" },
+];
+
 export default function Header() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [ingredientsDropdownOpen, setIngredientsDropdownOpen] = useState(false);
+  const [cosmeticsDropdownOpen, setCosmeticsDropdownOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-black border-b border-border">
@@ -73,17 +84,33 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/cosmetics">
-              <a
-                className={`text-sm font-medium transition-colors ${
-                  location === "/cosmetics"
-                    ? "text-primary"
-                    : "text-white hover:text-primary"
-                }`}
+            {/* Cosmetics Dropdown */}
+            <div className="relative group">
+              <button
+                className="text-sm font-medium flex items-center gap-2 transition-colors text-white hover:text-primary"
+                onMouseEnter={() => setCosmeticsDropdownOpen(true)}
+                onMouseLeave={() => setCosmeticsDropdownOpen(false)}
               >
                 Cosmetics
-              </a>
-            </Link>
+                <ChevronDown className="w-4 h-4" />
+              </button>
+              
+              {cosmeticsDropdownOpen && (
+                <div
+                  className="absolute top-full left-0 mt-0 bg-white border border-border shadow-lg min-w-max"
+                  onMouseEnter={() => setCosmeticsDropdownOpen(true)}
+                  onMouseLeave={() => setCosmeticsDropdownOpen(false)}
+                >
+                  {cosmeticsBrands.map((brand) => (
+                    <Link key={brand.id} href={`/cosmetics?brand=${brand.name}`}>
+                      <a className="block px-6 py-4 text-sm font-medium text-foreground hover:bg-secondary transition-colors border-b border-border last:border-b-0">
+                        {brand.name}
+                      </a>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
             <Link href="/skinboosters">
               <a

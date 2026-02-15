@@ -2,13 +2,24 @@
 
 import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
+import { useLocation } from "wouter";
 import { getBrands, getProductsByBrand, Product } from "@/lib/productStorage";
 
 export default function Cosmetics() {
+  const [location] = useLocation();
   const [brands] = useState<string[]>(getBrands());
   const [selectedBrand, setSelectedBrand] = useState<string>("Exosomore");
   const [products, setProducts] = useState<Product[]>([]);
   const [expandedBrand, setExpandedBrand] = useState<string | null>(null);
+
+  useEffect(() => {
+    // URL 쿼리 파라미터에서 브랜드 추출
+    const params = new URLSearchParams(location.split('?')[1]);
+    const brandParam = params.get('brand');
+    if (brandParam && brands.includes(brandParam)) {
+      setSelectedBrand(brandParam);
+    }
+  }, [location, brands]);
 
   useEffect(() => {
     setProducts(getProductsByBrand(selectedBrand));
