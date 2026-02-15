@@ -10,6 +10,7 @@ import IngredientDetail from "./pages/IngredientDetail";
 import Cosmetics from "./pages/Cosmetics";
 import Skinboosters from "./pages/Skinboosters";
 import Fillers from "./pages/Fillers";
+import Admin from "./pages/Admin";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -24,6 +25,7 @@ function Router() {
         <Route path={"/cosmetics"} component={Cosmetics} />
         <Route path={"/skinboosters"} component={Skinboosters} />
         <Route path={"/fillers"} component={Fillers} />
+        <Route path={"/admin"} component={Admin} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />

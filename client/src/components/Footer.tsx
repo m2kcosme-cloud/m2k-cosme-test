@@ -10,7 +10,7 @@ export default function Footer() {
             <div className="mb-6">
               <div className="text-3xl font-bold mb-2">M2K COSME</div>
               <div className="text-muted-foreground">
-                Where Medical Science Meets K-Beauty Innovation
+                Where Medical Science Meets K-Beauty Innovations
               </div>
             </div>
           </div>
@@ -42,7 +42,7 @@ export default function Footer() {
             <div className="label mb-6">CONTACT</div>
             <div className="space-y-2 text-muted-foreground">
               <p>For inquiries and partnerships</p>
-              <p className="font-medium text-foreground">info@m2kcosme.com</p>
+              <p className="font-medium text-foreground">m2kcosme@gmail.com</p>
             </div>
           </div>
         </div>
