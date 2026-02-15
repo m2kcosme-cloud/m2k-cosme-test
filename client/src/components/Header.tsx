@@ -24,7 +24,7 @@ export default function Header() {
           <Link href="/">
             <div className="cursor-pointer flex-shrink-0">
               <img 
-                src="/logo.png" 
+                src="https://imgur.com/LkvuJA9.png" 
                 alt="M2K Cosme" 
                 className="h-16 w-auto"
               />
