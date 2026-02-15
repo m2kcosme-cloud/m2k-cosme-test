@@ -17,7 +17,7 @@ export default function Header() {
   const [ingredientsDropdownOpen, setIngredientsDropdownOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-border">
+    <header className="sticky top-0 z-50 bg-black border-b border-border">
       <div className="container">
         <div className="flex items-center justify-between h-24">
           {/* Logo */}
@@ -26,7 +26,7 @@ export default function Header() {
               <img 
                 src="/logo.jpg" 
                 alt="M2K Cosme" 
-                className="h-12 w-auto"
+                className="h-16 w-auto brightness-0 invert"
               />
             </div>
           </Link>
@@ -38,7 +38,7 @@ export default function Header() {
                 className={`text-sm font-medium transition-colors ${
                   location === "/about"
                     ? "text-primary"
-                    : "text-foreground hover:text-primary"
+                    : "text-white hover:text-primary"
                 }`}
               >
                 About us
@@ -48,7 +48,7 @@ export default function Header() {
             {/* Ingredients Dropdown */}
             <div className="relative group">
               <button
-                className="text-sm font-medium flex items-center gap-2 transition-colors text-foreground hover:text-primary"
+                className="text-sm font-medium flex items-center gap-2 transition-colors text-white hover:text-primary"
                 onMouseEnter={() => setIngredientsDropdownOpen(true)}
                 onMouseLeave={() => setIngredientsDropdownOpen(false)}
               >
@@ -78,7 +78,7 @@ export default function Header() {
                 className={`text-sm font-medium transition-colors ${
                   location === "/cosmetics"
                     ? "text-primary"
-                    : "text-foreground hover:text-primary"
+                    : "text-white hover:text-primary"
                 }`}
               >
                 Cosmetics
@@ -90,7 +90,7 @@ export default function Header() {
                 className={`text-sm font-medium transition-colors ${
                   location === "/skinboosters"
                     ? "text-primary"
-                    : "text-foreground hover:text-primary"
+                    : "text-white hover:text-primary"
                 }`}
               >
                 Skinboosters
@@ -102,7 +102,7 @@ export default function Header() {
                 className={`text-sm font-medium transition-colors ${
                   location === "/fillers"
                     ? "text-primary"
-                    : "text-foreground hover:text-primary"
+                    : "text-white hover:text-primary"
                 }`}
               >
                 Fillers
@@ -112,7 +112,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2"
+            className="lg:hidden p-2 text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -126,11 +126,11 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className="lg:hidden py-6 border-t border-border">
+          <nav className="lg:hidden py-6 border-t border-border bg-black">
             <div className="flex flex-col gap-6">
               <Link href="/about">
                 <a
-                  className="text-base font-medium transition-colors hover:text-primary"
+                  className="text-base font-medium transition-colors text-white hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   About us
@@ -140,7 +140,7 @@ export default function Header() {
               {/* Mobile Ingredients Dropdown */}
               <div>
                 <button
-                  className="text-base font-medium flex items-center gap-2 transition-colors w-full"
+                  className="text-base font-medium flex items-center gap-2 transition-colors w-full text-white"
                   onClick={() => setIngredientsDropdownOpen(!ingredientsDropdownOpen)}
                 >
                   Ingredients
@@ -164,7 +164,7 @@ export default function Header() {
 
               <Link href="/cosmetics">
                 <a
-                  className="text-base font-medium transition-colors hover:text-primary"
+                  className="text-base font-medium transition-colors text-white hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Cosmetics
@@ -173,7 +173,7 @@ export default function Header() {
 
               <Link href="/skinboosters">
                 <a
-                  className="text-base font-medium transition-colors hover:text-primary"
+                  className="text-base font-medium transition-colors text-white hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Skinboosters
@@ -182,7 +182,7 @@ export default function Header() {
 
               <Link href="/fillers">
                 <a
-                  className="text-base font-medium transition-colors hover:text-primary"
+                  className="text-base font-medium transition-colors text-white hover:text-primary"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Fillers
