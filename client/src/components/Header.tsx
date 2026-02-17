@@ -12,13 +12,13 @@ const ingredientsList = [
 ];
 
 const cosmeticsBrands = [
-  { id: "exosomore", name: "Exosomore" },
-  { id: "cellvane", name: "Cellvane" },
-  { id: "therapytoabel", name: "TheraphytoAbel" },
-  { id: "snowtox", name: "Snowtox" },
-  { id: "exotshot", name: "ExoTshot" },
-  { id: "cosgram", name: "Cosgram" },
-  { id: "sensimium", name: "Sensimium (Haircare)" },
+  { id: "exosomore", name: "Exosomore", path: "/exosomore" },
+  { id: "cellvane", name: "Cellvane", path: "/cosmetics?brand=Cellvane" },
+  { id: "therapytoabel", name: "TheraphytoAbel", path: "/cosmetics?brand=TheraphytoAbel" },
+  { id: "snowtox", name: "Snowtox", path: "/cosmetics?brand=Snowtox" },
+  { id: "exotshot", name: "ExoTshot", path: "/cosmetics?brand=ExoTshot" },
+  { id: "cosgram", name: "Cosgram", path: "/cosmetics?brand=Cosgram" },
+  { id: "sensimium", name: "Sensimium (Haircare)", path: "/cosmetics?brand=Sensimium (Haircare)" },
 ];
 
 export default function Header() {
@@ -104,7 +104,7 @@ export default function Header() {
                   {cosmeticsBrands.map((brand) => (
                     <a
                       key={brand.id}
-                      href={`/cosmetics?brand=${brand.name}`}
+                      href={brand.path}
                       className="block px-6 py-4 text-sm font-medium text-foreground hover:bg-secondary transition-colors border-b border-border last:border-b-0"
                     >
                       {brand.name}
@@ -205,7 +205,7 @@ export default function Header() {
                     {cosmeticsBrands.map((brand) => (
                       <a
                         key={brand.id}
-                        href={`/cosmetics?brand=${brand.name}`}
+                        href={brand.path}
                         className="block text-sm font-medium text-muted-foreground hover:text-foreground"
                         onClick={() => setMobileMenuOpen(false)}
                       >
