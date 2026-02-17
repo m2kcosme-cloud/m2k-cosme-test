@@ -11,6 +11,8 @@ import Cosmetics from "./pages/Cosmetics";
 import Skinboosters from "./pages/Skinboosters";
 import Fillers from "./pages/Fillers";
 import Admin from "./pages/Admin";
+import ExosomoreBrand from "./pages/ExosomoreBrand";
+import ExosomoreProduct from "./pages/ExosomoreProduct";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -26,6 +28,8 @@ function Router() {
         <Route path={"/skinboosters"} component={Skinboosters} />
         <Route path={"/fillers"} component={Fillers} />
         <Route path={"/admin"} component={Admin} />
+        <Route path={"/exosomore"} component={ExosomoreBrand} />
+        <Route path={"/exosomore/product/:id"} component={ExosomoreProduct} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />

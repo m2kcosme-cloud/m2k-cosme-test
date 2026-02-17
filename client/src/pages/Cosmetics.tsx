@@ -35,6 +35,13 @@ export default function Cosmetics() {
     }
   }, [selectedBrand]);
 
+  const getBrandLink = (brand: string) => {
+    if (brand === 'Exosomore') {
+      return '/exosomore';
+    }
+    return `/cosmetics?brand=${brand}`;
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -53,7 +60,7 @@ export default function Cosmetics() {
             {brands.map((brand) => (
               <a
                 key={brand}
-                href={`/cosmetics?brand=${brand}`}
+                href={getBrandLink(brand)}
                 className={`group relative aspect-square rounded-lg overflow-hidden border-2 border-border hover:border-primary transition cursor-pointer`}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${BRAND_COLORS[brand] || 'from-gray-50 to-gray-100'} flex items-center justify-center`}>
