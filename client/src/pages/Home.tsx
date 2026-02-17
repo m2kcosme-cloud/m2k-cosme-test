@@ -93,18 +93,16 @@ export default function Home() {
 
 function IngredientCard({ name, subtitle, image, path }: { name: string; subtitle: string; image: string; path: string }) {
   return (
-    <Link href={path}>
-      <div className="group cursor-pointer fade-in-up">
-        <div className="aspect-square bg-secondary overflow-hidden mb-8">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        </div>
-        <h3 className="mb-2 group-hover:text-primary transition-colors">{name}</h3>
-        <p className="text-muted-foreground">{subtitle}</p>
+    <div className="group cursor-pointer fade-in-up" onClick={() => window.location.href = path}>
+      <div className="aspect-square bg-secondary overflow-hidden mb-8">
+        <img
+          src={image}
+          alt={name}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
       </div>
-    </Link>
+      <h3 className="mb-2 group-hover:text-primary transition-colors">{name}</h3>
+      <p className="text-muted-foreground">{subtitle}</p>
+    </div>
   );
 }
