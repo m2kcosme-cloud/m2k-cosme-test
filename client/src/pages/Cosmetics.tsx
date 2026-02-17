@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { getBrands, getProductsByBrand, Product } from "@/lib/productStorage";
 
-const BRAND_COLORS: { [key: string]: string } = {
-  "Exosomore": "from-blue-50 to-blue-100",
-  "Cellvane": "from-purple-50 to-purple-100",
-  "TheraphytoAbel": "from-green-50 to-green-100",
-  "Snowtox": "from-cyan-50 to-cyan-100",
-  "ExoTshot": "from-pink-50 to-pink-100",
-  "Cosgram": "from-orange-50 to-orange-100",
-  "Sensimium (Haircare)": "from-amber-50 to-amber-100",
+const BRAND_LOGOS: { [key: string]: string } = {
+  "Exosomore": "",
+  "Cellvane": "",
+  "TheraphytoAbel": "",
+  "Snowtox": "",
+  "ExoTshot": "",
+  "Cosgram": "",
+  "Sensimium (Haircare)": "",
 };
 
 export default function Cosmetics() {
@@ -19,6 +19,9 @@ export default function Cosmetics() {
   const [brands] = useState<string[]>(getBrands());
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
+  const [brandLogos, setBrandLogos] = useState<{ [key: string]: string }>(BRAND_LOGOS);
+  const [editingBrand, setEditingBrand] = useState<string | null>(null);
+  const [tempUrl, setTempUrl] = useState<string>("");
 
   useEffect(() => {
     // URL 쿼리 파라미터에서 브랜드 추출
@@ -55,22 +58,76 @@ export default function Cosmetics() {
       {/* Brand Selection */}
       {!selectedBrand ? (
         <section className="container py-24 lg:py-32 border-t border-border">
-          <h2 className="text-3xl font-bold mb-12">Select a Brand</h2>
+          <div className="flex justify-between items-center mb-12">
+            <h2 className="text-3xl font-bold">Select a Brand</h2>
+            <button
+              onClick={() => setEditingBrand(editingBrand ? null : brands[0])}
+              className="px-4 py-2 text-sm font-medium border border-border rounded hover:bg-secondary transition"
+            >
+              {editingBrand ? "Done Editing" : "Edit Logos"}
+            </button>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {brands.map((brand) => (
-              <a
+              <div
                 key={brand}
-                href={getBrandLink(brand)}
-                className={`group relative aspect-square rounded-lg overflow-hidden border-2 border-border hover:border-primary transition cursor-pointer`}
+                className={`group relative aspect-square rounded-lg overflow-hidden border-2 ${editingBrand === brand ? 'border-primary' : 'border-border'} hover:border-primary transition`}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${BRAND_COLORS[brand] || 'from-gray-50 to-gray-100'} flex items-center justify-center`}>
-                  <div className="text-center px-4">
-                    <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition">
-                      {brand}
-                    </h3>
+                {editingBrand === brand ? (
+                  <div className="absolute inset-0 bg-white flex flex-col items-center justify-center p-4 gap-3">
+                    <input
+                      type="text"
+                      placeholder="Paste image URL"
+                      value={tempUrl}
+                      onChange={(e) => setTempUrl(e.target.value)}
+                      className="w-full px-3 py-2 text-sm border border-border rounded focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                    <button
+                      onClick={() => {
+                        if (tempUrl) {
+                          setBrandLogos({ ...brandLogos, [brand]: tempUrl });
+                          setTempUrl("");
+                          setEditingBrand(null);
+                        }
+                      }}
+                      className="px-3 py-1 text-xs font-medium bg-primary text-white rounded hover:opacity-90 transition"
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={() => {
+                        setTempUrl("");
+                        setEditingBrand(null);
+                      }}
+                      className="px-3 py-1 text-xs font-medium border border-border rounded hover:bg-secondary transition"
+                    >
+                      Cancel
+                    </button>
                   </div>
-                </div>
-              </a>
+                ) : (
+                  <a
+                    href={getBrandLink(brand)}
+                    className="absolute inset-0 flex items-center justify-center cursor-pointer"
+                  >
+                    <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                      {brandLogos[brand] ? (
+                        <img
+                          src={brandLogos[brand]}
+                          alt={brand}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="text-center px-4">
+                          <h3 className="text-lg font-bold text-muted-foreground group-hover:text-primary transition">
+                            {brand}
+                          </h3>
+                          <p className="text-xs text-muted-foreground mt-2">No logo</p>
+                        </div>
+                      )}
+                    </div>
+                  </a>
+                )}
+              </div>
             ))}
           </div>
         </section>
